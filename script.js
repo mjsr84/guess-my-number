@@ -26,6 +26,9 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
 
+const displayMessage = function (message) {
+    document.querySelector('.message').textContent = message;
+}
 
 document.querySelector('.check').addEventListener
     ('click', function () {
@@ -34,12 +37,12 @@ document.querySelector('.check').addEventListener
 
         // when no input
         if (!guess) {
-            document.querySelector('.message').textContent = '⛔️ No number! ⛔️';
+            displayMessage('⛔️ No number! ⛔️');
         }
 
         // when player guesses correctly (WIN CONDITION)
         else if (guess === secretNumber) {
-            document.querySelector('.message').textContent = '🎉🎉🎉 CORRECT NUMBER 🎉🎉🎉';
+            displayMessage('🎉🎉🎉 CORRECT NUMBER 🎉🎉🎉');
 
             document.querySelector('.number').textContent = secretNumber;
 
@@ -56,7 +59,7 @@ document.querySelector('.check').addEventListener
         // cleaned up the code to handle both high and low guesses
         else if (guess !== secretNumber) {
             if (score > 0) {
-                document.querySelector('.message').textContent = guess > secretNumber ? '⚠️⚠️⚠️ Too High ⚠️⚠️⚠️' : '⚠️⚠️⚠️ Too Low ⚠️⚠️⚠️';
+                displayMessage(guess > secretNumber ? '⚠️⚠️⚠️ Too High ⚠️⚠️⚠️' : '⚠️⚠️⚠️ Too Low ⚠️⚠️⚠️');
                 score--;
                 document.querySelector('.score').textContent = score;
             } else {
